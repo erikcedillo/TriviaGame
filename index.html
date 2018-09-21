@@ -1,79 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Trivia Game</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta charset="UTF-8">
+<title>World Cup Trivial Trivia</title>
 
-    <script src="assets/java/app.js"></script>
-
+<!-- CSS Reset Sheet -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+<!-- Our own CSS Sheet -->
+<link rel="stylesheet" href="assets/css/style.css">
+<!-- jQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <section>
-            <div id="show-number"></div>
-            <p id = "number_correct"></p>
-        <div id="results"></div>
-        <form id="quiz" name="quiz" >
-        <h3>1.Who won the World Cup this year?</h3>
-        <input type="radio" name="q1" value="a" id="q1a"> a. Italy
-        <input type="radio" name="q1" value="b" id="q1b"> b. France
-        <input type="radio" name="q1" value="c" id="q1c"> c. Germany
-        <input type="radio" name="q1" value="d" id="q1d"> d. Russia
-        
-        <h3>2.Who was the top scorer in the World Cup this year??</h3>
-        <input type="radio" name="q2" value="a" id="q2a"> a. Harry Kane
-        <input type="radio" name="q2" value="b" id="q2b"> b. Mbappe
-        <input type="radio" name="q2" value="c" id="q2c"> c. Messi
-        <input type="radio" name="q2" value="d" id="q2d"> d. Ronaldo
-        
-        <h3>3.What was the team that no one thought Mexico could beat?</h3>
-        <input type="radio" name="q3" value="a" id="q3a"> a. Usa
-        <input type="radio" name="q3" value="b" id="q3b"> b. Russia
-        <input type="radio" name="q3" value="c" id="q3c"> c. Germany
-        <input type="radio" name="q3" value="d" id="q3d"> d. Sweden
-        
-        <h3>4.Who won the World Cup in 2014?</h3>
-        <input type="radio" name="q4" value="a" id="q4a"> a. Italy
-        <input type="radio" name="q4" value="b" id="q4b"> b. Argentina
-        <input type="radio" name="q4" value="c" id="q4c"> c. Mexico
-        <input type="radio" name="q4" value="d" id="q4d"> d. Germany
-        
-        <h3>5.Who was best the youngster player?</h3>
-        <input type="radio" name="q5" value="a" id="q5a"> a. Mbappe
-        <input type="radio" name="q5" value="b" id="q5b"> b. Dembele
-        <input type="radio" name="q5" value="c" id="q5c"> c. Rashford
-        <input type="radio" name="q5" value="d" id="q5d"> d. Arzani
-        
-        <h3>6.Best goalkeeper in the Wold Cup this year?</h3>
-        <input type="radio" name="q6" value="a" id="q6a"> a. Ter Stegen
-        <input type="radio" name="q6" value="b" id="q6b"> b. Courtois
-        <input type="radio" name="q6" value="c" id="q6c"> c. Neuer
-        <input type="radio" name="q6" value="d" id="q6d"> d. Lloris
-        
-        <h3>7.Where was the World Cup this year?</h3>
-        <input type="radio" name="q7" value="a" id="q7a"> a. Russia
-        <input type="radio" name="q7" value="b" id="q7b"> b. England
-        <input type="radio" name="q7" value="c" id="q7c"> c. Germany
-        <input type="radio" name="q7" value="d" id="q7d"> d. Mexico
-        
-        <h3>8.Who was the first team to play in the World Cup?</h3>
-        <input type="radio" name="q8" value="a" id="q8a"> a. Sweden
-        <input type="radio" name="q8" value="b" id="q8b"> b. France
-        <input type="radio" name="q8" value="c" id="q8c"> c. Germany
-        <input type="radio" name="q8" value="d" id="q8d"> d. Russia
-        <br><br>
-        <input type="submit" value="Submit Answers">
 
-        
-        </form>
+<div id="wrapper">
+<h1>Totally Trivial Trivia!</h1>
+<div id="sub-wrapper">
+<div id="quiz-area">
+<button id="start">Start</button>
+</div>
+</div>
+</div>
 
 
+<script type="text/javascript" src="assets/java/app.js"></script>
 
 
-
-    </section>
-    
 </body>
+
 </html>

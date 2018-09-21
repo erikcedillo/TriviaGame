@@ -1,107 +1,382 @@
-var number = 10;
-
-    //  Variable that will hold our interval ID when we execute
-    //  the "run" function
-    var intervalId;
-
-
-    //  The run function sets an interval
-    //  that runs the decrement function once a second.
-    //  *****BUG FIX******** 
-    //  Clearing the intervalId prior to setting our new intervalId will not allow multiple instances.
-    function run() {
-      clearInterval(intervalId);
-      intervalId = setInterval(decrement, 1000);
-    }
-
-    //  The decrement function.
-    function decrement() {
-
-      //  Decrease number by one.
-      number--;
-
-      //  Show the number in the #show-number tag.
-      $("#show-number").html("<h2>" + number + "</h2>");
-
-
-      //  Once number hits zero...
-      if (number === 0) {
-
-        //  ...run the stop function.
-        stop();
-
-        //  Alert the user that time is up.
-        alert("Time Up!");
-      }
-    }
-
-    //  The stop function
-    function stop() {
-
-      //  Clears our intervalId
-      //  We just pass the name of the interval
-      //  to the clearInterval function.
-      clearInterval(intervalId);
-    }
-
-    //  Execute the run function.
-    run();
-function check(){
-var q1 = document.quiz.q1.value;
-var q2 = document.quiz.q2.value;
-var q3 = document.quiz.q3.value;
-var q4 = document.quiz.q4.value;
-var q5 = document.quiz.q5.value;
-var q6 = document.quiz.q6.value;
-var q7 = document.quiz.q7.value;
-var q8 = document.quiz.q8.value;
-var correct = 0;
-
-  if(q1=="b"){
-      correct++;
-    }
-    if(q2=="a"){
-        correct++;
-      }
-      if(q3=="c"){
-        correct++;
-      }
-      if(q4=="d"){
-        correct++;
-      }
-      if(q5=="a"){
-        correct++;
-
-      }
-      if(q6=="b"){
-        correct++;
-      }
-      if(q7=="a"){
-        correct++;
-      }
-      if(q8=="d"){
-        correct++;
-      }
-      var messages = ["Great job!", "That's just okay", "You really need to do better"]
-      var range;
-      if(corect<1){
-          range = 2;
-      }
-      if(correct > 0 && correct < 3){
-          score = 1;
-      }
-      if(correct > 2){
-        score = 0;
-      }
- document.getElementById("message").innerHTML = messages [range];
- document.getElementById("number_correct").innerHTML = "You got " + correct + "correct.";
-      
+var panel = $("#quiz-area");
 
 
 
 
- 
-   
-    }
-  
+// Question set
 
+var questions = [{
+
+question: "1.Who won the World Cup this year?",
+
+answers: ["Italy", "France", "Germany", "Russia"],
+
+correctAnswer: "France"
+
+}, {
+
+question: "2.Who was the top scorer in the World Cup this year?",
+
+answers: ["Harry Kane", "Mbappe", "Messi", "Ronaldo"],
+
+correctAnswer: "Harry Kane"
+
+}, {
+
+question: "3.What was the team that no one thought Mexico could beat?",
+
+answers: ["USA", "Russia", "Germany", "Sweden"],
+
+correctAnswer: "Sweden"
+
+}, {
+
+question: "4.Who won the World Cup in 2014?",
+
+answers: ["Italy", "Argentina", "Mexico", "Germany"],
+
+correctAnswer: "Germany"
+
+}, {
+
+question: "5.Who was best the youngster player?",
+
+answers: ["Mbappe", "Dembele", "Rashford", "Arzani"],
+
+correctAnswer: "Mbappe"
+
+}, {
+
+question: "6.Best goalkeeper in the Wold Cup this year?",
+
+answers: ["Ter Stegen", "Courtois", "Neur", "Lloris"],
+
+correctAnswer: "Courtois"
+
+}, {
+
+question: "7.Where was the World Cup this year?",
+
+answers: ["Russia", "England", "Germany", "Mexico"],
+
+correctAnswer: "Russia"
+
+}, {
+
+
+question: "8.Who was the first team to play in the World Cup?",
+
+answers: ["Sweden", "France", "Germany", "Russia"],
+
+correctAnswer: "Russia"
+
+
+
+}];
+
+
+
+
+// Variable that will hold the setInterval
+
+var timer;
+
+
+
+
+var game = {
+
+
+
+
+correct: 0,
+
+incorrect: 0,
+
+counter: 120,
+
+
+
+
+countdown: function() {
+
+game.counter--;
+
+$("#counter-number").html(game.counter);
+
+if (game.counter === 0) {
+
+console.log("TIME UP");
+
+game.done();
+
+}
+
+},
+
+
+
+
+start: function() {
+
+timer = setInterval(game.countdown, 1000);
+
+
+
+
+$("#sub-wrapper").prepend("<h2>Time Remaining: <span id='counter-number'>120</span> Seconds</h2>");
+
+
+
+
+$("#start").remove();
+
+
+
+
+for (var i = 0; i < questions.length; i++)
+{
+
+panel.append("<h2>" + questions[i].question + "</h2>");
+
+for (var j = 0; j < questions[i].answers.length;
+j++) {
+
+panel.append("<input type='radio' name='question-" + i +
+
+"' value='" + questions[i].answers[j] + "''>" + questions[i].answers[j]);
+
+}
+
+}
+
+
+
+
+panel.append("<button id='done'>Done</button>");
+
+},
+
+
+
+
+done: function() {
+
+
+
+
+$.each($("input[name='question-0']:checked"), function() {
+
+if ($(this).val() === questions[0].correctAnswer) {
+
+game.correct++;
+
+}
+
+else {
+
+game.incorrect++;
+
+}
+
+});
+
+
+
+
+$.each($("input[name='question-1']:checked"), function() {
+
+if ($(this).val() === questions[1].correctAnswer) {
+
+game.correct++;
+
+}
+
+else {
+
+game.incorrect++;
+
+}
+
+});
+
+
+
+
+$.each($("input[name='question-2']:checked"), function() {
+
+if ($(this).val() === questions[2].correctAnswer) {
+
+game.correct++;
+
+}
+
+else {
+
+game.incorrect++;
+
+}
+
+});
+
+
+
+
+$.each($("input[name='question-3']:checked"), function() {
+
+if ($(this).val() === questions[3].correctAnswer) {
+
+game.correct++;
+
+}
+
+else {
+
+game.incorrect++;
+
+}
+
+});
+
+
+
+
+$.each($("input[name='question-4']:checked"), function() {
+
+if ($(this).val() === questions[4].correctAnswer) {
+
+game.correct++;
+
+}
+
+else {
+
+game.incorrect++;
+
+}
+
+});
+
+
+
+
+$.each($("input[name='question-5']:checked"), function() {
+
+if ($(this).val() === questions[5].correctAnswer) {
+
+game.correct++;
+
+}
+
+else {
+
+game.incorrect++;
+
+}
+
+});
+
+
+
+
+$.each($("input[name='question-6']:checked"), function() {
+
+if ($(this).val() === questions[6].correctAnswer) {
+
+game.correct++;
+
+}
+
+else {
+
+game.incorrect++;
+
+}
+
+});
+
+
+
+
+$.each($("input[name='question-7']:checked"), function() {
+
+if ($(this).val() === questions[7].correctAnswer) {
+
+game.correct++;
+
+}
+
+else {
+
+game.incorrect++;
+
+}
+
+});
+
+
+
+
+this.result();
+
+
+
+
+},
+
+
+
+
+result: function() {
+
+
+
+
+clearInterval(timer);
+
+
+
+
+$("#sub-wrapper h2").remove();
+
+
+
+
+panel.html("<h2>All Done!</h2>");
+
+panel.append("<h3>Correct Answers: " + this.correct + "</h3>");
+
+panel.append("<h3>Incorrect Answers: " + this.incorrect + "</h3>");
+
+panel.append("<h3>Unanswered: " + (questions.length - (this.incorrect
++ this.correct)) + "</h3>");
+
+}
+
+};
+
+
+
+
+// CLICK EVENTS
+
+
+
+
+$(document).on("click", "#start", function() {
+
+game.start();
+
+});
+
+
+
+
+
+
+
+$(document).on("click", "#done", function() {
+
+game.done();
+
+});
